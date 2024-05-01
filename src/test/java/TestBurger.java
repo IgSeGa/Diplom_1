@@ -1,0 +1,2 @@
+public class TestBurger {
+}
