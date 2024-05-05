@@ -28,33 +28,33 @@ public class TestBurger{
     }
     @Test
     public void testAddIngredient(){
-        Burger burger = new Burger(bun, ingredient, ingredients);
+        Burger burger = new Burger(bun, ingredients);
         burger.addIngredient(ingredient);
         Mockito.verify(ingredients).add(ingredient);
     }
     @Test
     public void testRemoveIngredient(){
-        Burger burger = new Burger(bun, ingredient, ingredients);
+        Burger burger = new Burger(bun, ingredients);
         burger.removeIngredient(1);
         Mockito.verify(ingredients).remove(1);
     }
     @Test
     public void testMoveIngredient(){
-        Burger burger = new Burger(bun, ingredient, ingredients);
+        Burger burger = new Burger(bun, ingredients);
         burger.moveIngredient(1,3);
         Mockito.verify(ingredients).add(3,ingredients.remove(1));
     }
 
     @Test
     public void testGetPrice(){
-        Burger burger = new Burger(bun, ingredient, List.of(ingredient));
+        Burger burger = new Burger(bun, List.of(ingredient));
         Mockito.when(bun.getPrice()).thenReturn(3.14f);
         Mockito.when(ingredient.getPrice()).thenReturn(3.15f);
         Assert.assertTrue(9.43f == burger.getPrice());
     }
     @Test
     public void testGetReciept(){
-        Burger burger = new Burger(bun, ingredient, List.of(ingredient));
+        Burger burger = new Burger(bun, List.of(ingredient));
         Mockito.when(bun.getName()).thenReturn("С повидлом");
         Mockito.when(burger.getPrice()).thenReturn(3.14f);
         Mockito.when(ingredient.getType()).thenReturn(IngredientType.FILLING);
