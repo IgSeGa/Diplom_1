@@ -1,3 +1,4 @@
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +8,7 @@ import praktikum.IngredientType;
 
 @RunWith(Parameterized.class)
 public class TestIngred {
+    SoftAssertions soft = new SoftAssertions();
     private IngredientType ingredient;
     private String name;
     private float price;
@@ -26,8 +28,9 @@ public class TestIngred {
     @Test
     public void testIngredientClass(){
         Ingredient ingred = new Ingredient(ingredient, name, price);
-        Assert.assertTrue(ingredient == ingred.getType());
-        Assert.assertEquals(name, ingred.getName());
-        Assert.assertTrue(price == ingred.getPrice());
+        soft.assertThat(ingred.getType()).isEqualTo(ingredient);
+        soft.assertThat(ingred.getName()).isEqualTo(name);
+        soft.assertThat(ingred.getPrice()).isEqualTo(price);
+        soft.assertAll();
     }
 }
